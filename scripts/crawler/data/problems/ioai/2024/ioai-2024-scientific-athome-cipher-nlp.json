@@ -1,0 +1,27 @@
+{
+  "id": "ioai-2024-scientific-athome-cipher-nlp",
+  "competition": "IOAI",
+  "year": 2024,
+  "stage": "Scientific Round - At-Home",
+  "title": "Ciphered Language Modeling: Fine-Tuning on Unknown Encrypted Script",
+  "domain": "NLP",
+  "difficulty": "Hard",
+  "evaluation_metric": "Macro F1",
+  "tags": [
+    "nlp",
+    "language-models",
+    "cipher",
+    "fine-tuning",
+    "ioai-2024"
+  ],
+  "description_md": "## Ciphered Language Modeling\n\nFine-tune a language model on provided ciphered text of an unknown synthetic language. The task tests understanding of subword tokenization, character-level n-gram statistics, and masked language model pre-training dynamics without access to standard pre-trained vocabularies.",
+  "dataset_links": [
+    "https://ioai-official.org/wp-content/uploads/2025/06/At-home-problems.zip"
+  ],
+  "starter_code_url": null,
+  "solution_notebook_url": "https://ioai-official.org/wp-content/uploads/2025/06/Best-solutions-at-home-problems.zip",
+  "editorial_md": "Top solutions built specialized Byte-Pair Encoding (BPE) tokenizers and trained lightweight RoBERTa architectures from scratch.",
+  "source_url": "https://ioai-official.org/wp-content/uploads/2025/06/At-home-problems.zip",
+  "crawled_at": "2026-09-18T14:50:07.096621",
+  "version": 1
+}

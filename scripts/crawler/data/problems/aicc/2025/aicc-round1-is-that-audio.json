@@ -1,0 +1,25 @@
+{
+  "id": "aicc-round1-is-that-audio",
+  "competition": "AICC",
+  "year": 2025,
+  "stage": "Community Contest",
+  "title": "AICC Is That Audio: Environmental Acoustic Scene Classification",
+  "domain": "Audio",
+  "difficulty": "Medium",
+  "evaluation_metric": "Macro F1",
+  "tags": [
+    "audio",
+    "spectrograms",
+    "audio-classification",
+    "mel-scale",
+    "aicc"
+  ],
+  "description_md": "# Is that audio?\n\nSolution author: Asandei Stefan-Alexandru\n\nNote: there were some technical issues with the task dataset, including data leakage. We are very sorry about this, and we will work more on task review in the future. This notebook does not get the best possible score, but we consider it is a great learning resource. We are releasing better Audio tasks in the coming rounds.\n\nThis notebook is very useful to teach about how to approach Audio tasks, including Data Processing and Models. \n\n# Data\n\n# Model\n\n# Training\n\n# Submission",
+  "dataset_links": [],
+  "starter_code_url": "https://github.com/AI-Community-Contest/solutions/blob/main/round-1/is-that-audio.ipynb",
+  "solution_notebook_url": "https://github.com/AI-Community-Contest/solutions/tree/main/round-1",
+  "editorial_md": "Official baseline code and task notebooks provided by the AI Community Contest team.",
+  "source_url": "https://github.com/AI-Community-Contest/solutions/tree/main/round-1",
+  "crawled_at": "2026-09-18T14:50:27.170900",
+  "version": 1
+}

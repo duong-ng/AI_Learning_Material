@@ -1,0 +1,26 @@
+{
+  "id": "ioai-2025-scientific-radar",
+  "competition": "IOAI",
+  "year": 2025,
+  "stage": "Scientific Round - On-Site",
+  "title": "Radar: Multi-Modal Segmentation",
+  "domain": "CV",
+  "difficulty": "Olympiad Final",
+  "evaluation_metric": "IoU",
+  "tags": [
+    "ioai-2025",
+    "cv",
+    "iou",
+    "onsite-final"
+  ],
+  "description_md": "# Task\nYou can now attempt a community-hosted version of the task on Kaggle at [this link](https://www.kaggle.com/competitions/radar-ioai-2025).\n\n\n\n# Abridged task description\nIn each test case, you are given 6 images, each representing a different information capture from a radar feed. For each testcase, you must output a segmentation map of whether the pixels corresponded to a background pixel, a wall pixel or a human pixel. \n\nHowever, the scoring function is extremely imbalanced: for each non-background pixel correctly identified, you get 50 points (not to be confused with your actual score), whilst correct background pixels only get 1 point. Your points are divided by the maximum possible number of points, to get your final score.",
+  "dataset_links": [
+    "https://www.kaggle.com/competitions/radar-ioai-2025"
+  ],
+  "starter_code_url": "https://github.com/IOAI-official/IOAI-2025/tree/main/Individual-Contest",
+  "solution_notebook_url": "https://github.com/ioai-writeup/ioai-writeup.github.io/blob/main/all_collections/_posts/2025-08-09-d1p1-radar.md",
+  "editorial_md": "# Unofficial writeup\n\n#\n\n# 82+ points\nCredit: many countries\n\nIt is well known that U-net performs extremely well on image segmentation tasks with a lot of training data. This problem fits that description. So we feed the training data into a standard U-net with 3 encoder layers and 3 decoder layers. In particular, having 512 channels at the bottleneck yielded strong results. \n\nIt seemed that the size of the U-net (when no other modifications were made) had a substantial impact on the score. For example, in Australia's experience, 2 encoder/decoder layers gave 37 points, whilst 4 encoder/decoder layers and 1024 channels at the bottleneck gave 0 points (i.e. lower than baseline).\n\nOne possible theory is that due to the imbalance in the scoring function, underfitting and overfitting to CrossEntropyLoss (the 'default', sensible choice) was heavily penalized. For example, if an overfitted model learnt to aggressively classify pixels as background, it would consistently miss out on a lot of points.\n\n#\n\n# 98+ points\nCredit: many countries\n\nWe keep the base model as U-net, however we change the weights of our loss function to represent actual scoring conditions. In particular, we want to make the background class 50 times less important that all the other classes. If you use a standard PyTorch setup, you can do this by setting the `weight` parameter of `torch.nn.CrossEntropyLoss`.",
+  "source_url": "https://ioai-writeup.github.io/posts/d1p1-radar/",
+  "crawled_at": "2026-09-18T14:49:46.624270",
+  "version": 1
+}

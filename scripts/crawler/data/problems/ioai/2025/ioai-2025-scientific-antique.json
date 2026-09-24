@@ -1,0 +1,24 @@
+{
+  "id": "ioai-2025-scientific-antique",
+  "competition": "IOAI",
+  "year": 2025,
+  "stage": "Scientific Round - On-Site",
+  "title": "Antique: Historical Artifact Image Restoration & Inpainting",
+  "domain": "CV",
+  "difficulty": "Olympiad Final",
+  "evaluation_metric": "MSE",
+  "tags": [
+    "ioai-2025",
+    "cv",
+    "mse",
+    "onsite-final"
+  ],
+  "description_md": "# Abridged task description\n\nYou are given a set of points in 5-dimensional space. Each point represents either a \"real\" or a \"fake\" painting. It is known that the real and fake points are clustered separately. However, in the training data you only know the labels of a very small number of points.\n\nYour task is to classify all the points in the test data as either \"real\" or \"fake\".",
+  "dataset_links": [],
+  "starter_code_url": "https://github.com/IOAI-official/IOAI-2025/tree/main/Individual-Contest",
+  "solution_notebook_url": "https://github.com/ioai-writeup/ioai-writeup.github.io/blob/main/all_collections/_posts/2025-08-09-d2p2-antique.md",
+  "editorial_md": "# Unofficial writeup\n\n#\n\n# Useful info\n\nMany high-performing solutions for this task started by visualizing the data in 2 dimensions by techniques such as PCA/t-SNE. The clusters kind of look like two half moons.\n\nEven if you just projected the first two dimensions, you could still get a decent amount of separation between the two clusters ([reference](https://discord.com/channels/1271542282142748774/1394369012544311427/1404483128327798905))\n\n![PCA projection image](https://i.imgur.com/HjcsVmM.png)\n\nWith t-SNE the data looks a bit like this:\n\n![t-SNE image](https://i.imgur.com/1HiEik7.png)\n\n#\n\n# 97 points\nCredit: Brazil, Hungary\n\nReduce the data to two dimensions. We can use the K-nearest neighbours algorithm in order to infer all the unknown points. The only problem is that because there is so little labelled training data, KNN can get confused and mislabel points in the clusters.\n\nHowever this is easily fixed. Since the two clusters are very distinct from each other, we can just manually add labelled points for each of the clusters, and change the value of K until KNN correctly separates the two clusters.\n\n\n#\n\n# 99 points\nCredit: Australia, Greece\n\nIt looks like t-SNE gives us more separated clusters than PCA. So we use t-SNE. Then, instead of relying on the labelled training data, we used the unsupervised DBSCAN algorithm. Setting `eps=4` and `min_samples=2` on scikit-learn's DBSCAN implementation was enough for 99.36 points.\n\nLooking back, it was quite lucky that the same code worked across Leaderboard A and B. DBSCAN is very sensitive to the first point given in the input. So for example, if the first point in the validation set belonged to Real, but the first point in the test set belonged to Fake, you might be tricked into a 0.998 on Leaderboard A but ~0.002 on Leaderboard B.\n\nIn order to avoid this, the Greece team came up with the funny approach of selecting both their 0.998 and 0.002 submissions for Leaderboard B. You could also avoid this by sorting the points by vertical coordinate.\n\n##\n\n# Additional cool info\nCredit: Brazil\n\nFor this specific task there was such clear separation between the t-SNE components that you could just check whether the 2nd (vertical) component was positive or negative for basically full score.",
+  "source_url": "https://ioai-writeup.github.io/posts/d2p2-antique/",
+  "crawled_at": "2026-09-18T14:49:49.788383",
+  "version": 1
+}

@@ -1,0 +1,25 @@
+{
+  "id": "vaic-2026-regional-theory",
+  "competition": "VAIC",
+  "year": 2026,
+  "stage": "Vòng Khu vực",
+  "title": "Vietnam AI Championship 2026 - Đề thi Lý thuyết Vòng Khu vực",
+  "domain": "Theory/Math",
+  "difficulty": "Hard",
+  "evaluation_metric": "Accuracy",
+  "tags": [
+    "vaic-2026",
+    "theory",
+    "transformers",
+    "metrics",
+    "proofs"
+  ],
+  "description_md": "# Vietnam Artificial Intelligence Championship 2026 - Regional Round\nPhần thi Lý thuyết gồm 20 câu trắc nghiệm chọn lọc và 3 bài toán tự luận chứng minh sâu về toán học AI.",
+  "dataset_links": [],
+  "starter_code_url": null,
+  "solution_notebook_url": null,
+  "editorial_md": "Lời giải chi tiết 20 câu trắc nghiệm và 3 bài tự luận xem tại [Trung tâm Lý thuyết](/theory).",
+  "source_url": "https://vaic.org.vn/",
+  "crawled_at": "2026-09-19T14:30:56.150890",
+  "version": 1
+}

@@ -1,0 +1,33 @@
+---
+id: "aicc-round3-tabular-energy-consumption"
+competition: "AICC"
+year: 2025
+stage: "Community Contest"
+title: "AICC Energy Grid Consumption Spike Forecasting"
+domain: "Tabular ML"
+difficulty: "Hard"
+evaluation_metric: "RMSE"
+tags:
+  - "tabular-ml"
+  - "time-series"
+  - "forecasting"
+  - "energy"
+  - "aicc"
+dataset_links: []
+starter_code_url: "https://github.com/AI-Community-Contest/solutions/blob/main/round-3/baseline/baseline.ipynb"
+solution_notebook_url: "https://github.com/AI-Community-Contest/solutions/tree/main/round-3"
+source_url: "https://github.com/AI-Community-Contest/solutions/tree/main/round-3"
+crawled_at: "2026-09-18T14:39:08.912837"
+version: 1
+---
+## AICC Energy Grid Consumption Spike Forecasting
+
+Official IOAI Community Contest (AICC) challenge from ROUND-3.
+
+Designed in IOAI exam format to provide realistic preparation for international olympiad contestants.
+
+---
+
+## Editorial & Solutions
+
+Official baseline code and task notebooks provided by the AI Community Contest team.

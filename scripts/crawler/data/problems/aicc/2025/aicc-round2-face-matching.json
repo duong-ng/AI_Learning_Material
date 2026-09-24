@@ -1,0 +1,25 @@
+{
+  "id": "aicc-round2-face-matching",
+  "competition": "AICC",
+  "year": 2025,
+  "stage": "Community Contest",
+  "title": "AICC Face Matching: Metric Learning and Deep Feature Embeddings",
+  "domain": "CV",
+  "difficulty": "Hard",
+  "evaluation_metric": "ROC-AUC",
+  "tags": [
+    "cv",
+    "metric-learning",
+    "face-recognition",
+    "embeddings",
+    "aicc"
+  ],
+  "description_md": "# Face matching\n\nSolution author: Asandei Stefan-Alexandru\n\n# Setup\n\n# Extract features\n\nFind top 5 similar images for each reference\n\n# Submission",
+  "dataset_links": [],
+  "starter_code_url": "https://github.com/AI-Community-Contest/solutions/blob/main/round-2/face-matching.ipynb",
+  "solution_notebook_url": "https://github.com/AI-Community-Contest/solutions/tree/main/round-2",
+  "editorial_md": "Official baseline code and task notebooks provided by the AI Community Contest team.",
+  "source_url": "https://github.com/AI-Community-Contest/solutions/tree/main/round-2",
+  "crawled_at": "2026-09-18T14:50:27.750375",
+  "version": 1
+}

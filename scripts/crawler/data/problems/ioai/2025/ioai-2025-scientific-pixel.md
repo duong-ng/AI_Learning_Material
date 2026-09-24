@@ -1,0 +1,39 @@
+---
+id: "ioai-2025-scientific-pixel"
+competition: "IOAI"
+year: 2025
+stage: "Scientific Round - On-Site"
+title: "Pixel: Neural Audio Synthesis & Waveform Generation"
+domain: "Audio"
+difficulty: "Olympiad Final"
+evaluation_metric: "Perplexity"
+tags:
+  - "ioai-2025"
+  - "audio"
+  - "perplexity"
+  - "onsite-final"
+dataset_links: []
+starter_code_url: "https://github.com/IOAI-official/IOAI-2025/tree/main/Individual-Contest"
+solution_notebook_url: "https://github.com/ioai-writeup/ioai-writeup.github.io/blob/main/all_collections/_posts/2025-08-09-d2p3-pixel.md"
+source_url: "https://ioai-writeup.github.io/posts/d2p3-pixel/"
+crawled_at: "2026-09-18T14:49:50.579437"
+version: 1
+---
+# Abridged task description
+
+You are given a bunch of photos of animals in the wilderness. On the judging server, there is a CLiP model that can recognize animals. For each image, you need to find a rectangular crop that meets the following conditions:
+1. The rectangular crop covers no more than 6.25% of the image
+2. The CliP model must be able to correctly identify the animal in the cropped image.
+
+The same CLiP model used for judging is provided in the training environment. So you can inspect the model and see how it classifies things. 
+
+The one caveat is that the test set had 700 224x224 images, and your notebook needed to finish executing in less than 8 minutes. So you couldn't run the CLiP model too many times per image.
+
+---
+
+## Editorial & Solutions
+
+# Jury's solution
+Credit: China, Jury members
+
+The Scientific Committee's reference solution used attention masks and added [CLS] tokens to the ViT, with their attention masked to only see the info in their respective masked area, to sort of process different masks in parallel. The idea is that we first call the CLIP for the unmasked image to get the "true" label of it (CLIP is really good on the unmasked images), and then pass it through the CLIP with added masked CLS tokens. We then get the predictions for the different masks by calculating the cosine similarity between the masked CLS tokens and the text. We mark a mask as potentially correct if it returns the same label as the unmasked prediction. We then check about three of them and return the one that is correct. This gets 82–85% accuracy.

@@ -1,0 +1,65 @@
+# =============================================================================
+# Git Ignore Configuration - AI Olympiad Training & Crawler Platform
+# =============================================================================
+
+# --- Node & Web Dependencies ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnp/
+.pnp.js
+
+# --- Next.js Build Outputs & Cache ---
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# --- Environment Secrets (CRITICAL: DO NOT COMMIT REAL KEYS) ---
+.env
+.env*.local
+*.env
+!.env.example
+
+# --- SQLite Databases & Binary Storage ---
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+prisma/dev.db
+
+# --- Python Cache & Virtual Environments ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Operating System & Editor Files ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Temporary & Scratch Files ---
+scratch/
+tmp/
+temp/
+*.log

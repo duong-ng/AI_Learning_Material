@@ -1,0 +1,56 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Problem {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  competition      String
+  year             Int
+  stage            String
+  title            String
+  domain           String
+  difficulty       String
+  evaluationMetric String?
+  tags             String
+  description      String
+  editorial        String?
+  starterCode      String?
+  datasetUrl       String?
+  officialPdfUrl   String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model TheoryQuestion {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  competition   String
+  year          Int
+  stage         String
+  topic         String
+  difficulty    String
+  question      String
+  options       String
+  correctAnswer String
+  explanation   String
+  tags          String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model UserProgress {
+  id          String   @id @default(cuid())
+  targetId    String
+  targetType  String
+  status      String
+  selectedAns String?
+  isCorrect   Boolean?
+  notes       String?
+  updatedAt   DateTime @updatedAt
+}

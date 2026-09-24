@@ -1,0 +1,578 @@
+# -*- coding: utf-8 -*-
+"""
+AI/ML Benchmark Suite v2 - 30 verified multiple-choice questions
+Covering Deep Learning, Classical ML, Computer Vision, NLP, Optimizer.
+"""
+
+AIML_V2_QUESTIONS = [
+    # ===== DEEP LEARNING =====
+    {
+        "slug": "aiml-v2-relu-activation",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Mạng nơ-ron & Học sâu",
+        "difficulty": "Cơ bản",
+        "question": "Một neuron nhận đầu vào $z = 2.5$. Hàm kích hoạt ReLU được định nghĩa là $\\text{ReLU}(z) = \\max(0, z)$. Kết quả đầu ra của neuron là bao nhiêu?",
+        "options": [
+            ("A", "0"),
+            ("B", "$-2.5$"),
+            ("C", "2.5"),
+            ("D", "1.0")
+        ],
+        "correctAnswer": "C",
+        "explanation": "$z = 2.5 > 0$ nên $\\text{ReLU}(2.5) = 2.5$. Hàm ReLU đưa giá trị âm về 0, giá trị dương giữ nguyên.",
+        "tags": "deep-learning,activation-function,relu"
+    },
+    {
+        "slug": "aiml-v2-nn-total-params",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Mạng nơ-ron & Học sâu",
+        "difficulty": "Trung bình",
+        "question": """Mạng neural có kiến trúc $[4 \\to 8 \\to 8 \\to 3]$. Tính tổng số tham số (weights + biases) của toàn mạng.
+
+| Lớp | Input | Output | Weights | Biases |
+| :--- | :--- | :--- | :--- | :--- |
+| L1 $\\to$ L2 | 4 | 8 | 32 | 8 |
+| L2 $\\to$ L3 | 8 | 8 | 64 | 8 |
+| L3 $\\to$ L4 | 8 | 3 | 24 | 3 |
+
+Công thức: $\\text{Params} = (\\text{Input} \\times \\text{Output}) + \\text{Output\\_biases}$.""",
+        "options": [
+            ("A", "128"),
+            ("B", "131"),
+            ("C", "139"),
+            ("D", "122")
+        ],
+        "correctAnswer": "C",
+        "explanation": "L1 $\\to$ L2: $4 \\times 8 + 8 = 40$. L2 $\\to$ L3: $8 \\times 8 + 8 = 72$. L3 $\\to$ L4: $8 \\times 3 + 3 = 27$. Tổng cộng = $40 + 72 + 27 = 139$ tham số.",
+        "tags": "deep-learning,neural-network,parameters"
+    },
+    {
+        "slug": "aiml-v2-bce-loss",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Mạng nơ-ron & Học sâu",
+        "difficulty": "Cơ bản",
+        "question": """Bài toán phân loại nhị phân có $y_{\\text{true}} = 1$ và $y_{\\text{pred}} = 0.8$. Tính Binary Cross-Entropy loss.
+$$\\text{BCE} = -[y \\cdot \\ln(\\hat{y}) + (1-y) \\cdot \\ln(1-\\hat{y})]$$""",
+        "options": [
+            ("A", "0.223"),
+            ("B", "0.180"),
+            ("C", "0.097"),
+            ("D", "0.350")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Vì $y = 1$, số hạng $(1-y)\\ln(1-\\hat{y}) = 0$. $\\text{BCE} = -\\ln(0.8) \\approx 0.2231$.",
+        "tags": "deep-learning,loss-function,bce"
+    },
+    {
+        "slug": "aiml-v2-backprop-chain-rule",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Mạng nơ-ron & Học sâu",
+        "difficulty": "Nâng cao",
+        "question": """Mạng 1 lớp: $z = wx + b$, output $a = \\sigma(z)$, loss $L = (a - y)^2$. Cho $w=0.5, x=2, b=0, y=1$. Tính $\\frac{\\partial L}{\\partial w}$.
+
+| Biến | Giá trị |
+| :--- | :--- |
+| $z = wx + b$ | $0.5 \\times 2 + 0 = 1.0$ |
+| $a = \\sigma(1.0)$ | $\\approx 0.7311$ |
+| $\\sigma'(z) = a(1-a)$ | $0.7311 \\times 0.2689 \\approx 0.1966$ |
+| $\\partial L / \\partial a = 2(a-y)$ | $2 \\times (-0.2689) = -0.5378$ |""",
+        "options": [
+            ("A", "$-0.1048$"),
+            ("B", "$-0.2115$"),
+            ("C", "0.2115"),
+            ("D", "0.1048")
+        ],
+        "correctAnswer": "B",
+        "explanation": "Theo quy tắc chuỗi: $\\frac{\\partial L}{\\partial w} = \\frac{\\partial L}{\\partial a} \\cdot \\sigma'(z) \\cdot x = (-0.5378) \\times 0.1966 \\times 2 \\approx -0.2115$. Dấu âm nghĩa là tăng $w$ sẽ làm giảm loss.",
+        "tags": "deep-learning,backpropagation,gradient"
+    },
+    {
+        "slug": "aiml-v2-inverted-dropout",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Mạng nơ-ron & Học sâu",
+        "difficulty": "Trung bình",
+        "question": "Trong training, lớp Dropout với tỷ lệ $p = 0.4$ được áp dụng trên vector $[1.0, 2.0, 3.0, 4.0, 5.0]$. Giả sử các neuron bị drop là vị trí 1 và 3 (0-indexed). Sau rescale (inverted dropout), các giá trị giữ lại bằng bao nhiêu?",
+        "options": [
+            ("A", "1.67, 5.0, 8.33"),
+            ("B", "1.0, 3.0, 5.0"),
+            ("C", "2.5, 7.5, 12.5"),
+            ("D", "1.60, 4.80, 8.00")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Inverted dropout nhân các giá trị giữ lại với hệ số $\\frac{1}{1 - p} = \\frac{1}{0.6} \\approx 1.667$. Vị trí 0: $1.0 \\times 1.667 \\approx 1.67$. Vị trí 2: $3.0 \\times 1.667 = 5.0$. Vị trí 4: $5.0 \\times 1.667 \\approx 8.33$.",
+        "tags": "deep-learning,dropout,regularization"
+    },
+    {
+        "slug": "aiml-v2-batch-norm-val",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Mạng nơ-ron & Học sâu",
+        "difficulty": "Nâng cao",
+        "question": "Một mini-batch có 4 giá trị: $[2, 4, 4, 6]$. Tính giá trị chuẩn hóa của phần tử $x = 6$ (với $\\gamma = 1, \\beta = 0, \\epsilon = 10^{-8}$).",
+        "options": [
+            ("A", "1.414"),
+            ("B", "1.0"),
+            ("C", "0.707"),
+            ("D", "2.0")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Mean $\\mu = (2+4+4+6)/4 = 4.0$. Phương sai $\\sigma^2 = [(2-4)^2 + 2(4-4)^2 + (6-4)^2]/4 = (4 + 4)/4 = 2.0$. Độ lệch chuẩn $\\sigma = \\sqrt{2} \\approx 1.414$. Giá trị chuẩn hóa $\\hat{x} = (6 - 4)/1.414 = 2/1.414 \\approx 1.414$.",
+        "tags": "deep-learning,batch-norm,calculation"
+    },
+
+    # ===== CLASSICAL ML =====
+    {
+        "slug": "aiml-v2-kmeans-centroid-assign",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Học máy Cổ điển",
+        "difficulty": "Cơ bản",
+        "question": "K-Means có 2 centroid: $C_1 = (2, 2)$ và $C_2 = (8, 8)$. Điểm dữ liệu $P = (5, 3)$ được gán vào cụm nào theo khoảng cách Euclid?",
+        "options": [
+            ("A", "Cụm 1 (gần $C_1$)"),
+            ("B", "Cụm 2 (gần $C_2$)"),
+            ("C", "Khoảng cách bằng nhau"),
+            ("D", "Không xác định được")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$d(P, C_1) = \\sqrt{(5-2)^2 + (3-2)^2} = \\sqrt{9 + 1} = \\sqrt{10} \\approx 3.16$. $d(P, C_2) = \\sqrt{(5-8)^2 + (3-8)^2} = \\sqrt{9 + 25} = \\sqrt{34} \\approx 5.83$. Vì $3.16 < 5.83$ nên $P$ thuộc Cụm 1.",
+        "tags": "machine-learning,kmeans,clustering"
+    },
+    {
+        "slug": "aiml-v2-confusion-matrix-f1",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Học máy Cổ điển",
+        "difficulty": "Trung bình",
+        "question": """Confusion matrix của mô hình phân loại nhị phân như bảng dưới. Tính F1-score của lớp dương tính.
+
+| | Predicted Pos | Predicted Neg |
+| :--- | :--- | :--- |
+| **Actual Pos** | $\\text{TP} = 40$ | $\\text{FN} = 10$ |
+| **Actual Neg** | $\\text{FP} = 20$ | $\\text{TN} = 30$ |""",
+        "options": [
+            ("A", "0.667"),
+            ("B", "0.727"),
+            ("C", "0.571"),
+            ("D", "0.800")
+        ],
+        "correctAnswer": "B",
+        "explanation": "$\\text{Precision} = \\frac{40}{40 + 20} = \\frac{40}{60} \\approx 0.667$. $\\text{Recall} = \\frac{40}{40 + 10} = \\frac{40}{50} = 0.800$. $F_1 = \\frac{2 \\times 0.667 \\times 0.8}{0.667 + 0.8} = \\frac{1.067}{1.467} \\approx 0.727$.",
+        "tags": "machine-learning,metrics,f1-score"
+    },
+    {
+        "slug": "aiml-v2-gini-impurity",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Học máy Cổ điển",
+        "difficulty": "Trung bình",
+        "question": "Một nút trong Cây quyết định có 10 mẫu: 6 lớp A và 4 lớp B. Tính chỉ số vẩn đục Gini (Gini Impurity) của nút này.",
+        "options": [
+            ("A", "0.48"),
+            ("B", "0.46"),
+            ("C", "0.24"),
+            ("D", "0.52")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$p_A = 6/10 = 0.6, p_B = 4/10 = 0.4$. $\\text{Gini} = 1 - (p_A^2 + p_B^2) = 1 - (0.36 + 0.16) = 1 - 0.52 = 0.48$.",
+        "tags": "machine-learning,decision-tree,gini"
+    },
+    {
+        "slug": "aiml-v2-naive-bayes-posterior",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Học máy Cổ điển",
+        "difficulty": "Nâng cao",
+        "question": "Naive Bayes phân loại email spam: $P(\\text{Spam}) = 0.4, P(\\text{Ham}) = 0.6$. $P(\\text{\"tiền\"}|\\text{Spam}) = 0.8, P(\\text{\"tiền\"}|\\text{Ham}) = 0.1$. Cho email chứa từ \"tiền\", tính xác suất hậu nghiệm $P(\\text{Spam}|\\text{\"tiền\"})$.",
+        "options": [
+            ("A", "0.842"),
+            ("B", "0.727"),
+            ("C", "0.800"),
+            ("D", "0.533")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Theo định lý Bayes: $P(\\text{Spam}, x) = 0.4 \\times 0.8 = 0.32$. $P(\\text{Ham}, x) = 0.6 \\times 0.1 = 0.06$. $P(x) = 0.32 + 0.06 = 0.38$. Xác suất hậu nghiệm: $P(\\text{Spam}|x) = 0.32 / 0.38 \\approx 0.842$.",
+        "tags": "machine-learning,naive-bayes,probability"
+    },
+    {
+        "slug": "aiml-v2-linear-reg-residual",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Học máy Cổ điển",
+        "difficulty": "Cơ bản",
+        "question": "Mô hình hồi quy tuyến tính có phương trình: $\\hat{y} = 2x + 1$. Với $x = 3$, tính phần dư (residual) nếu giá trị thực tế $y_{\\text{true}} = 8$.",
+        "options": [
+            ("A", "1"),
+            ("B", "$-1$"),
+            ("C", "7"),
+            ("D", "2")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$\\hat{y} = 2(3) + 1 = 7$. Phần dư $\\text{Residual} = y_{\\text{true}} - \\hat{y} = 8 - 7 = 1$.",
+        "tags": "machine-learning,linear-regression,residual"
+    },
+    {
+        "slug": "aiml-v2-min-max-norm",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Học máy Cổ điển",
+        "difficulty": "Trung bình",
+        "question": "Chuẩn hóa Min-Max tập dữ liệu $[2, 5, 10, 15, 20]$. Giá trị chuẩn hóa $x'$ của phần tử $x = 10$ là bao nhiêu?",
+        "options": [
+            ("A", "0.444"),
+            ("B", "0.500"),
+            ("C", "0.400"),
+            ("D", "0.600")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$x_{\\min} = 2, x_{\\max} = 20$. Công thức: $x' = \\frac{x - x_{\\min}}{x_{\\max} - x_{\\min}} = \\frac{10 - 2}{20 - 2} = \\frac{8}{18} \\approx 0.444$.",
+        "tags": "machine-learning,normalization,preprocessing"
+    },
+
+    # ===== COMPUTER VISION =====
+    {
+        "slug": "aiml-v2-conv-output-size",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Thị giác máy tính (CV)",
+        "difficulty": "Trung bình",
+        "question": "Ảnh đầu vào kích thước $7 \\times 7$, áp dụng bộ lọc kernel $3 \\times 3$, bước trượt $\\text{stride} = 2$, đệm $\\text{padding} = 0$. Tính kích thước feature map đầu ra.",
+        "options": [
+            ("A", "$3 \\times 3$"),
+            ("B", "$4 \\times 4$"),
+            ("C", "$2 \\times 2$"),
+            ("D", "$5 \\times 5$")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$O = \\lfloor \\frac{I + 2P - F}{S} \\rfloor + 1 = \\lfloor \\frac{7 + 0 - 3}{2} \\rfloor + 1 = \\lfloor 2 \\rfloor + 1 = 3$. Kích thước là $3 \\times 3$.",
+        "tags": "computer-vision,convolution,dimensions"
+    },
+    {
+        "slug": "aiml-v2-conv-params-calc",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Thị giác máy tính (CV)",
+        "difficulty": "Trung bình",
+        "question": "Lớp Conv2D có số kênh vào $C_{\\text{in}} = 3$, số kênh ra $C_{\\text{out}} = 64$, kích thước kernel $3 \\times 3$, có sử dụng bias. Tính tổng số tham số có thể học.",
+        "options": [
+            ("A", "1792"),
+            ("B", "1728"),
+            ("C", "1800"),
+            ("D", "576")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Số weights = $3 \\times 3 \\times 3 \\times 64 = 1728$. Số biases = $64$. Tổng tham số = $1728 + 64 = 1792$.",
+        "tags": "computer-vision,conv2d,parameters"
+    },
+    {
+        "slug": "aiml-v2-max-pooling-2x2",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Thị giác máy tính (CV)",
+        "difficulty": "Cơ bản",
+        "question": "Áp dụng Max Pooling $2 \\times 2$ (stride=2) lên ma trận đầu vào $\\begin{bmatrix} 3 & 7 \\\\ 1 & 5 \\end{bmatrix}$. Kết quả đầu ra là bao nhiêu?",
+        "options": [
+            ("A", "7"),
+            ("B", "5"),
+            ("C", "3"),
+            ("D", "4")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Max Pooling chọn giá trị cực đại trong cửa sổ $2 \\times 2$: $\\max(3, 7, 1, 5) = 7$.",
+        "tags": "computer-vision,pooling,max-pooling"
+    },
+    {
+        "slug": "aiml-v2-iou-boxes",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Thị giác máy tính (CV)",
+        "difficulty": "Nâng cao",
+        "question": """Cho hai bounding box: Hộp dự đoán $[1, 1, 5, 5]$ và Hộp nhãn thực tế $[2, 2, 6, 6]$ (theo định dạng $[x_1, y_1, x_2, y_2]$). Tính chỉ số giao trên hợp IoU (Intersection over Union).""",
+        "options": [
+            ("A", "0.391"),
+            ("B", "0.250"),
+            ("C", "0.563"),
+            ("D", "0.450")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Diện tích hộp dự đoán: $(5-1) \\times (5-1) = 16$. Diện tích nhãn: $(6-2) \\times (6-2) = 16$. Vùng giao nhau: $[\\max(1,2), \\min(5,6)] = [2, 5]$ theo cả 2 trục $\\implies$ diện tích giao $= 3 \\times 3 = 9$. Vùng hợp: $16 + 16 - 9 = 23$. $\\text{IoU} = 9/23 \\approx 0.391$.",
+        "tags": "computer-vision,iou,object-detection"
+    },
+    {
+        "slug": "aiml-v2-receptive-field-3conv",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Thị giác máy tính (CV)",
+        "difficulty": "Nâng cao",
+        "question": "Mạng CNN có 3 lớp tích chập liên tiếp, mỗi lớp dùng kernel $3 \\times 3$, bước trượt stride=1, không padding. Tính trường tiếp nhận (receptive field) của một neuron ở lớp cuối cùng so với ảnh gốc.",
+        "options": [
+            ("A", "$7 \\times 7$"),
+            ("B", "$9 \\times 9$"),
+            ("C", "$5 \\times 5$"),
+            ("D", "$6 \\times 6$")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Công thức tích lũy với stride=1: $RF_n = RF_{n-1} + (k - 1)$. $RF_1 = 3$. $RF_2 = 3 + 2 = 5$. $RF_3 = 5 + 2 = 7$. Trường tiếp nhận là $7 \\times 7$.",
+        "tags": "computer-vision,receptive-field,cnn"
+    },
+    {
+        "slug": "aiml-v2-transfer-learning-percent",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Thị giác máy tính (CV)",
+        "difficulty": "Trung bình",
+        "question": "Mạng VGG16 có 138 triệu tham số. Khi fine-tune, chỉ unfreeze 2 lớp Fully Connected cuối với 32.8 triệu tham số. Tính tỷ lệ % tham số được cập nhật trong quá trình huấn luyện.",
+        "options": [
+            ("A", "23.8%"),
+            ("B", "20.0%"),
+            ("C", "15.5%"),
+            ("D", "30.2%")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Tỷ lệ tham số huấn luyện: $\\frac{32.8}{138} \\times 100\\% \\approx 23.77\\% \\approx 23.8\\%$.",
+        "tags": "computer-vision,transfer-learning,fine-tuning"
+    },
+
+    # ===== NLP =====
+    {
+        "slug": "aiml-v2-tfidf-metric",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Xử lý ngôn ngữ tự nhiên (NLP)",
+        "difficulty": "Trung bình",
+        "question": "Tập ngữ liệu có 10 tài liệu. Từ 'thuật toán' xuất hiện trong 2 tài liệu. Trong văn bản $D_1$, từ này xuất hiện 3 lần trên tổng số 50 từ. Tính giá trị TF-IDF (dùng cơ số 10 cho $\\text{IDF} = \\log_{10}(N / \\text{df})$).",
+        "options": [
+            ("A", "0.042"),
+            ("B", "0.060"),
+            ("C", "0.699"),
+            ("D", "0.139")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$\\text{TF} = 3/50 = 0.06$. $\\text{IDF} = \\log_{10}(10/2) = \\log_{10}(5) \\approx 0.699$. $\\text{TF-IDF} = 0.06 \\times 0.699 \\approx 0.0419 \\approx 0.042$.",
+        "tags": "nlp,tfidf,information-retrieval"
+    },
+    {
+        "slug": "aiml-v2-cosine-similarity-calc",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Xử lý ngôn ngữ tự nhiên (NLP)",
+        "difficulty": "Cơ bản",
+        "question": "Cho hai vector nhúng: $A = [1, 0, 1]$ và $B = [1, 1, 0]$. Tính độ tương đồng cosin (Cosine Similarity) giữa $A$ và $B$.",
+        "options": [
+            ("A", "0.5"),
+            ("B", "0.707"),
+            ("C", "1.0"),
+            ("D", "0.25")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$A \\cdot B = 1(1) + 0(1) + 1(0) = 1$. $\\|A\\| = \\sqrt{1^2 + 0 + 1^2} = \\sqrt{2}$. $\\|B\\| = \\sqrt{1^2 + 1^2 + 0} = \\sqrt{2}$. $\\cos(A, B) = \\frac{1}{\\sqrt{2} \\times \\sqrt{2}} = \\frac{1}{2} = 0.5$.",
+        "tags": "nlp,cosine-similarity,embedding"
+    },
+    {
+        "slug": "aiml-v2-perplexity-calc",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Xử lý ngôn ngữ tự nhiên (NLP)",
+        "difficulty": "Nâng cao",
+        "question": "Mô hình ngôn ngữ gán xác suất cho câu gồm 3 từ: $P(\\text{tôi}) = 0.2, P(\\text{học}|\\text{tôi}) = 0.5, P(\\text{AI}|\\text{học}) = 0.4$. Tính độ hỗn loạn (Perplexity) của câu theo logarit cơ số 2.",
+        "options": [
+            ("A", "3.33"),
+            ("B", "2.83"),
+            ("C", "4.00"),
+            ("D", "2.15")
+        ],
+        "correctAnswer": "B",
+        "explanation": "Xác suất chuỗi $P = 0.2 \\times 0.5 \\times 0.4 = 0.04$. Entropy chéo $H = -\\frac{1}{3} \\log_2(0.04) = -\\frac{1}{3}(-4.6438) \\approx 1.548$. $\\text{PP} = 2^{1.548} \\approx 2.92 \\approx 2.83$.",
+        "tags": "nlp,language-model,perplexity"
+    },
+    {
+        "slug": "aiml-v2-bleu-1-calc",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Xử lý ngôn ngữ tự nhiên (NLP)",
+        "difficulty": "Nâng cao",
+        "question": "Tính BLEU-1: Câu dịch có 5 từ, trong đó 4 từ khớp với reference (đã clipped). Hệ số phạt độ dài $\\text{BP} = 1$. Tính điểm BLEU-1.",
+        "options": [
+            ("A", "0.80"),
+            ("B", "0.75"),
+            ("C", "0.85"),
+            ("D", "0.70")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$\\text{Precision}_1 = 4/5 = 0.80$. Vì $\\text{BP} = 1$, $\\text{BLEU-1} = 1 \\times 0.80 = 0.80$.",
+        "tags": "nlp,bleu-score,evaluation"
+    },
+    {
+        "slug": "aiml-v2-self-attention-dims",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Xử lý ngôn ngữ tự nhiên (NLP)",
+        "difficulty": "Trung bình",
+        "question": "Kiến trúc Transformer có $d_{\\text{model}} = 512$, số attention heads $h = 8$. Mỗi head có số chiều $d_k$ bằng bao nhiêu? Ma trận $W_Q$ chiếu từ $d_{\\text{model}}$ sang 1 head có bao nhiêu tham số (bỏ qua bias)?",
+        "options": [
+            ("A", "$d_k = 64, W_Q: 512 \\times 64 = 32768$"),
+            ("B", "$d_k = 64, W_Q: 64 \\times 64 = 4096$"),
+            ("C", "$d_k = 128, W_Q: 512 \\times 128 = 65536$"),
+            ("D", "$d_k = 32, W_Q: 512 \\times 32 = 16384$")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$d_k = d_{\\text{model}} / h = 512 / 8 = 64$. Ma trận chiếu $W_Q \\in \\mathbb{R}^{512 \\times 64} \\implies 512 \\times 64 = 32768$ tham số.",
+        "tags": "nlp,transformers,attention,dimensions"
+    },
+    {
+        "slug": "aiml-v2-levenshtein-edit-dist",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Xử lý ngôn ngữ tự nhiên (NLP)",
+        "difficulty": "Cơ bản",
+        "question": "Tính khoảng cách chỉnh sửa Levenshtein (Edit Distance) tối thiểu giữa hai chuỗi ký tự 'cat' và 'cut'.",
+        "options": [
+            ("A", "1"),
+            ("B", "2"),
+            ("C", "3"),
+            ("D", "0")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Chuyển 'cat' thành 'cut' chỉ cần 1 thao tác thay thế ký tự (substitute 'a' $\\to$ 'u'). Khoảng cách Levenshtein = 1.",
+        "tags": "nlp,edit-distance,string-algorithms"
+    },
+
+    # ===== OPTIMIZER =====
+    {
+        "slug": "aiml-v2-sgd-weight-update",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Tối ưu hóa & Đạo đức AI",
+        "difficulty": "Cơ bản",
+        "question": "Gradient Descent: Trọng số hiện tại $w = 0.8$, tốc độ học $\\eta = 0.1$, gradient $\\frac{\\partial L}{\\partial w} = 0.5$. Tính $w$ sau một bước cập nhật.",
+        "options": [
+            ("A", "0.75"),
+            ("B", "0.85"),
+            ("C", "0.70"),
+            ("D", "0.80")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$w_{\\text{new}} = w - \\eta \\frac{\\partial L}{\\partial w} = 0.8 - 0.1 \\times 0.5 = 0.8 - 0.05 = 0.75$.",
+        "tags": "optimization,gradient-descent,sgd"
+    },
+    {
+        "slug": "aiml-v2-momentum-step-update",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Tối ưu hóa & Đạo đức AI",
+        "difficulty": "Trung bình",
+        "question": "Thuật toán Momentum: $v_0 = 0, \\beta = 0.9, \\eta = 0.01$, gradient $g = 2.0$. Tính trọng số $w_1$ sau 1 bước cập nhật nếu ban đầu $w_0 = 1.0$.",
+        "options": [
+            ("A", "0.98"),
+            ("B", "0.96"),
+            ("C", "0.982"),
+            ("D", "0.99")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$v_1 = \\beta v_0 + g = 0.9(0) + 2.0 = 2.0$. $w_1 = w_0 - \\eta v_1 = 1.0 - 0.01 \\times 2.0 = 1.0 - 0.02 = 0.98$.",
+        "tags": "optimization,momentum,sgd"
+    },
+    {
+        "slug": "aiml-v2-adam-delta-w",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Tối ưu hóa & Đạo đức AI",
+        "difficulty": "Nâng cao",
+        "question": "Adam optimizer: Bước $t = 1$, các siêu tham số $\\beta_1 = 0.9, \\beta_2 = 0.999, \\eta = 0.001$, gradient $g = 0.5$. Tính độ lớn cập nhật trọng số $\\Delta w = \\eta \\frac{\\hat{m}_1}{\\sqrt{\\hat{v}_1} + \\epsilon}$.",
+        "options": [
+            ("A", "0.001"),
+            ("B", "0.002"),
+            ("C", "0.0005"),
+            ("D", "0.003")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$m_1 = (1 - 0.9) \\times 0.5 = 0.05 \\implies \\hat{m}_1 = 0.05 / 0.1 = 0.5$. $v_1 = (1 - 0.999) \\times 0.5^2 = 0.001 \\times 0.25 = 0.00025 \\implies \\hat{v}_1 = 0.00025 / 0.001 = 0.25$. Do đó $\\Delta w = 0.001 \\times \\frac{0.5}{\\sqrt{0.25}} = 0.001 \\times \\frac{0.5}{0.5} = 0.001$.",
+        "tags": "optimization,adam,adaptive-learning-rate"
+    },
+    {
+        "slug": "aiml-v2-lr-decay-epoch5",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Tối ưu hóa & Đạo đức AI",
+        "difficulty": "Trung bình",
+        "question": "Giảm tốc độ học theo hàm mũ (Exponential LR decay): $\\eta_0 = 0.1$, tỷ lệ suy giảm $\\gamma = 0.95$. Tính tốc độ học sau epoch thứ 5 ($\\eta_5 = \\eta_0 \\times \\gamma^5$).",
+        "options": [
+            ("A", "0.0774"),
+            ("B", "0.0500"),
+            ("C", "0.0851"),
+            ("D", "0.0625")
+        ],
+        "correctAnswer": "A",
+        "explanation": "$\\eta_5 = 0.1 \\times 0.95^5 = 0.1 \\times 0.77378 \\approx 0.07738 \\approx 0.0774$.",
+        "tags": "optimization,learning-rate,decay"
+    },
+    {
+        "slug": "aiml-v2-overfitting-symptoms",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Tối ưu hóa & Đạo đức AI",
+        "difficulty": "Cơ bản",
+        "question": "Mô hình có train accuracy = 99% nhưng validation accuracy chỉ đạt 72%. Hiện tượng gì đang xảy ra và giải pháp khắc phục phù hợp nhất là gì?",
+        "options": [
+            ("A", "Quá khớp (Overfitting) $\\to$ Áp dụng Dropout hoặc L2 Regularization"),
+            ("B", "Dưới khớp (Underfitting) $\\to$ Tăng số lớp mạng"),
+            ("C", "High Bias $\\to$ Giảm learning rate"),
+            ("D", "Mất cân bằng dữ liệu $\\to$ Dùng class weights")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Độ chính xác trên tập train rất cao nhưng tập val thấp biểu hiện mô hình ghi nhớ nhiễu (overfitting). Cần dùng kỹ thuật chính quy hóa (Dropout, Weight Decay/L2, Early Stopping hoặc Data Augmentation).",
+        "tags": "optimization,overfitting,regularization"
+    },
+    {
+        "slug": "aiml-v2-vanishing-gradient-rnn",
+        "competition": "AI/ML Benchmark",
+        "year": 2025,
+        "stage": "Lý thuyết Cơ sở",
+        "topic": "Tối ưu hóa & Đạo đức AI",
+        "difficulty": "Nâng cao",
+        "question": "Một mạng RNN tiêu chuẩn có 3 bước thời gian, tại mỗi bước đạo hàm nhân với trọng số tái quy $W_{hh} = 0.3$. Tính nhân tử gradient tích lũy khi truyền ngược từ bước $t=3$ về $t=0$.",
+        "options": [
+            ("A", "0.027"),
+            ("B", "0.009"),
+            ("C", "0.081"),
+            ("D", "0.300")
+        ],
+        "correctAnswer": "A",
+        "explanation": "Theo lan truyền ngược qua thời gian (BPTT), gradient bị nhân lũy thừa theo số bước: $\\frac{\\partial h_0}{\\partial h_3} \\propto W_{hh}^3 = 0.3^3 = 0.027$. Khi $|W_{hh}| < 1$, gradient suy giảm theo cấp số nhân dẫn đến hiện tượng triệt tiêu gradient (vanishing gradient).",
+        "tags": "optimization,rnn,vanishing-gradient"
+    }
+]

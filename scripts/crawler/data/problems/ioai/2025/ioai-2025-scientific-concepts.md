@@ -1,0 +1,55 @@
+---
+id: "ioai-2025-scientific-concepts"
+competition: "IOAI"
+year: 2025
+stage: "Scientific Round - On-Site"
+title: "Concepts: Mechanistic Interpretability & Latent Probing"
+domain: "NLP"
+difficulty: "Olympiad Final"
+evaluation_metric: "Accuracy"
+tags:
+  - "ioai-2025"
+  - "nlp"
+  - "accuracy"
+  - "onsite-final"
+dataset_links: []
+starter_code_url: "https://github.com/IOAI-official/IOAI-2025/tree/main/Individual-Contest"
+solution_notebook_url: "https://github.com/ioai-writeup/ioai-writeup.github.io/blob/main/all_collections/_posts/2025-08-09-d1p3-concepts.md"
+source_url: "https://ioai-writeup.github.io/posts/d1p3-concepts/"
+crawled_at: "2026-09-18T14:49:48.211708"
+version: 1
+---
+# Abridged task description
+
+You are given a list of hints to choose from such as Box, Weapon, Society, Fire...etc... 
+
+On the judging server, there is an LLM guesser. You are given a list of words the guesser can choose from, as well as a target word within that list. Your task is to submit a notebook that outputs 4 sequences of <= 10 hints. The guesser will then read your hints, output its top 10 guesses, and you are scored based on how confidently the guesser found the target word (or whether the target word was even guessed).
+
+You are allowed to use pretrained LLM models under 1B parameters such as Qwen3-0.5b and facebook opt-125m.
+
+---
+
+## Editorial & Solutions
+
+# Unofficial writeup
+
+#
+
+# ~16 points
+Credit: Australia, Brazil
+
+The baseline solution simply asked the facebook-opt-125m LLM to output the sequence of hints. We can just keep it like that. If you changed the LLM prompt to be more descriptive about the task (e.g. give some hint examples in the prompt), and changed the LLM to Qwen3-0.5b you could get around 16-18 points.
+
+#
+
+# 67 points
+Credit: Greece
+
+Even the most powerful LLMs under 1B params are very bad at solving this task. So we ditch most of the LLM inference, and instead convert each hint to a vector in latent space. We also convert all the options (including the target word) to vectors in the same latent space. For each hint, we compare its cosine similarity distance to each of the options, and if it's closest to the target word, we include it in our output. 
+
+#
+
+# 92 points
+Credit: Singapore
+
+(Work in progress)...

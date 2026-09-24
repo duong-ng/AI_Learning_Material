@@ -1,0 +1,27 @@
+{
+  "id": "roai-2025-national-byzantine-music",
+  "competition": "ROAI",
+  "year": 2025,
+  "stage": "National Finals",
+  "title": "Byzantine Musical-Notation Optical Recognition & Paleographic Classification",
+  "domain": "CV",
+  "difficulty": "Olympiad Final",
+  "evaluation_metric": "Macro F1",
+  "tags": [
+    "cv",
+    "ocr",
+    "document-analysis",
+    "paleography",
+    "roai-2025"
+  ],
+  "description_md": "## Byzantine Musical Notation Classification (ROAI 2025 National Round)\n\nStudents classify rare medieval Byzantine musical symbols from digitized historic manuscripts. The dataset exhibits severe historical degradation, ink bleed-through, and handwritten script variations.",
+  "dataset_links": [
+    "https://judge.nitro-ai.org/competitions"
+  ],
+  "starter_code_url": null,
+  "solution_notebook_url": "https://github.com/stefanasandei/roai-solved",
+  "editorial_md": "Detailed solution walk-throughs available in the community archive at stefanasandei/roai-solved.",
+  "source_url": "https://olimpiada-ai.ro/en",
+  "crawled_at": "2026-09-18T14:50:21.937391",
+  "version": 1
+}

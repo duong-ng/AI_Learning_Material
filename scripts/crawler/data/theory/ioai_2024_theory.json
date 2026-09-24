@@ -1,0 +1,182 @@
+[
+  {
+    "slug": "ioai-2024-q1-imbalanced-accuracy-paradox",
+    "competition": "IOAI",
+    "year": 2024,
+    "stage": "Vòng thi Lý thuyết Chính thức",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Chung kết Quốc tế",
+    "question": "Trong bài toán chẩn đoán y khoa phát hiện bệnh hiếm (chỉ có $5\\%$ bệnh nhân thực sự mắc bệnh), tại sao độ đo Accuracy (độ chính xác tổng thể) lại gây ngộ nhận nghiêm trọng (Accuracy Paradox)?",
+    "options": [
+      [
+        "A",
+        "Mô hình tầm thường chỉ cần luôn dự đoán 'Không mắc bệnh' (Zero-Rule baseline) là đã đạt Accuracy 95%, nhưng hoàn toàn vô giá trị trong việc cứu chữa bệnh nhân mắc bệnh hiểm nghèo."
+      ],
+      [
+        "B",
+        "Vì độ đo Accuracy chỉ áp dụng được cho bài toán hồi quy (Regression)."
+      ],
+      [
+        "C",
+        "Vì Accuracy không thể tính toán được khi số lượng mẫu lớn hơn 1000."
+      ],
+      [
+        "D",
+        "Vì hàm mất mát Cross-Entropy không tương thích với Accuracy."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "**Đáp án chính xác: A (Theo đáp án chính thức IOAI 2024)**\n\nTrong tập dữ liệu mất cân bằng nghiêm trọng (Imbalanced Datasets), lớp chiếm đa số lấn át hoàn toàn tỷ lệ lỗi. Với 95% mẫu âm tính, bộ phân loại hằng số (luôn dự đoán Negative) sẽ đạt Accuracy 95% nhưng có:\n- Recall = 0% (bỏ sót 100% bệnh nhân dương tính)\n- Precision = Không xác định\nDo đó, các cuộc thi Olympic AI bắt buộc sử dụng F1-Score, Macro-F1 hoặc PR-AUC để đánh giá đồng thời False Positives và False Negatives.",
+    "tags": "ioai-2024,imbalanced-data,accuracy-paradox,medical-ai"
+  },
+  {
+    "slug": "ioai-2024-q2-trolley-ai-ethics-dilemma",
+    "competition": "IOAI",
+    "year": 2024,
+    "stage": "Vòng thi Lý thuyết Chính thức",
+    "topic": "Tối ưu hóa & Đạo đức AI",
+    "difficulty": "Chung kết Quốc tế",
+    "question": "**Tình huống Đoàn tàu & Xe buýt bí ẩn (IOAI 2024 Ethics):**\nMột đoàn tàu đang lao về phía xe buýt bí ẩn trên đường ray A với xác suất $50\\%$ chứa 2 người. Bạn có thể gạt cần để chuyển hướng tàu sang đường ray B, nơi có xe buýt bí ẩn với xác suất $10\\%$ chứa 10 người.\nXét theo kỳ vọng toán học về số mạng sống bị đe dọa, bạn nên đưa ra quyết định nào?",
+    "options": [
+      [
+        "A",
+        "Kỳ vọng số người gặp nạn ở cả hai đường ray đều bằng nhau ($0.5 \\times 2 = 1$ người và $0.1 \\times 10 = 1$ người); đây là một tình thế tiến thoái lưỡng nan về mặt đạo đức (moral dilemma) không thể giải quyết thuần túy bằng một phương trình xác suất."
+      ],
+      [
+        "B",
+        "Gạt cần ngay lập tức vì 10% xác suất luôn nhỏ hơn 50%."
+      ],
+      [
+        "C",
+        "Không gạt cần vì tuyệt đối không được tác động vào tiến trình ngẫu nhiên."
+      ],
+      [
+        "D",
+        "Chọn phương án có số người tối đa nhỏ hơn (chọn xe 2 người thay vì xe 10 người)."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "**Đáp án chính xác: A (Theo đáp án chính thức IOAI 2024)**\n\nKỳ vọng tổn thất nhân mạng:\n- Đường ray A: $E_A = 0.5 \\times 2 + 0.5 \\times 0 = 1.0$ người.\n- Đường ray B: $E_B = 0.1 \\times 10 + 0.9 \\times 0 = 1.0$ người.\nCả hai phương án đều có giá trị kỳ vọng toán học bằng nhau ($E = 1$). Đây là ví dụ kinh điển trong đề thi IOAI cho thấy các quyết định đạo đức AI không thể đơn giản hóa thành một bài toán tối ưu hóa giá trị kỳ vọng, mà phải cân nhắc trách nhiệm can thiệp chủ động (deontology) so với hậu quả luận (consequentialism).",
+    "tags": "ioai-2024,ai-ethics,trolley-problem,decision-theory"
+  },
+  {
+    "slug": "ioai-2024-q3-kmeans-finite-convergence-proof",
+    "competition": "IOAI",
+    "year": 2024,
+    "stage": "Vòng thi Lý thuyết Chính thức",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Chung kết Quốc tế",
+    "question": "Tại sao thuật toán phân cụm **K-Means (Lloyd's algorithm)** luôn được đảm bảo **hội tụ sau một số hữu hạn bước lặp**?",
+    "options": [
+      [
+        "A",
+        "Vì số cách phân hoạch $N$ điểm dữ liệu thành $K$ cụm là hữu hạn ($K^N$), và mỗi bước cập nhật tâm cụm/gán nhãn đều làm giảm đơn điệu hàm mất mát bình phương sai số (SSE) trừ khi thuật toán dừng."
+      ],
+      [
+        "B",
+        "Vì ma trận khoảng cách Euclid luôn có định thức khác 0."
+      ],
+      [
+        "C",
+        "Vì K-Means là thuật toán tối ưu hóa lồi toàn cục."
+      ],
+      [
+        "D",
+        "Vì gradient của hàm mục tiêu K-Means luôn bị chặn bởi hằng số Lipschitz."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "**Đáp án chính xác: A (Theo đáp án chính thức IOAI 2024)**\n\nChứng minh:\n1. Số lượng cấu hình phân hoạch tập $N$ điểm thành $K$ cụm rời nhau là hữu hạn (tối đa $K^N$ trạng thái).\n2. Ở bước 1 (gán nhãn), mỗi điểm chọn tâm cụm gần nhất $\\implies$ SSE giảm hoặc giữ nguyên.\n3. Ở bước 2 (cập nhật tâm), tâm cụm mới là trung bình cộng của các điểm trong cụm $\\implies$ tối thiểu hóa tổng bình phương khoảng cách Euclid của cụm đó $\\implies$ SSE giảm nghiêm ngặt nếu phân hoạch thay đổi.\n4. Do SSE giảm đơn điệu và bị chặn dưới bởi 0, thuật toán không bao giờ lặp lại một phân hoạch đã qua. Do đó thuật toán buộc phải dừng lại sau hữu hạn bước.",
+    "tags": "ioai-2024,kmeans,convergence,proof,clustering"
+  },
+  {
+    "slug": "ioai-2024-q4-dalle-discrete-vae-params",
+    "competition": "IOAI",
+    "year": 2024,
+    "stage": "Vòng thi Lý thuyết Chính thức",
+    "topic": "AI Tạo sinh (Generative AI)",
+    "difficulty": "Chung kết Quốc tế",
+    "question": "Mô hình DALL-E sử dụng Discrete VAE để mã hóa ảnh thành các visual tokens với kích thước từ vựng $V = 8192$ và số chiều nhúng $d = 512$. Mạng Feed-Forward Network (FFN) trong mỗi khối Transformer gồm 2 phép biến đổi tuyến tính: $d \\to f$ và $f \\to d$ với $f = 2048$ (bỏ qua bias).\nTính: (1) Số tham số của ma trận nhúng từ vựng, và (2) Số tham số của FFN trong một lớp Transformer.",
+    "options": [
+      [
+        "A",
+        "Embedding: $4,194,304$ tham số; FFN: $2,097,152$ tham số"
+      ],
+      [
+        "B",
+        "Embedding: $2,097,152$ tham số; FFN: $4,194,304$ tham số"
+      ],
+      [
+        "C",
+        "Embedding: $8,388,608$ tham số; FFN: $1,048,576$ tham số"
+      ],
+      [
+        "D",
+        "Embedding: $4,194,304$ tham số; FFN: $1,048,576$ tham số"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "**Đáp án chính xác: A (Theo đáp án chính thức IOAI 2024)**\n\n1. Ma trận nhúng từ vựng $E \\in \\mathbb{R}^{V \\times d}$:\n   $$\\text{Params}_{\\text{Emb}} = V \\times d = 8192 \\times 512 = 4,194,304$$\n2. Mạng Feed-Forward Network (FFN):\n   - Tuyến tính 1 ($d \\to f$): $512 \\times 2048 = 1,048,576$\n   - Tuyến tính 2 ($f \\to d$): $2048 \\times 512 = 1,048,576$\n   - Tổng tham số FFN: $1,048,576 + 1,048,576 = 2,097,152$ tham số.",
+    "tags": "ioai-2024,dalle,vae,transformers,parameter-calculation"
+  },
+  {
+    "slug": "ioai-2024-q5-kernel-perceptron-novikoff",
+    "competition": "IOAI",
+    "year": 2024,
+    "stage": "Vòng thi Lý thuyết Chính thức",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Chung kết Quốc tế",
+    "question": "Trong thuật toán **Kernel Perceptron**, giả sử vector trọng số ban đầu $w_0 = 0$. Mỗi khi gặp mẫu bị phân loại sai $y_i \\langle w, \\phi(x_i) \\rangle \\le 0$, trọng số được cập nhật $w \\leftarrow w + y_i \\phi(x_i)$.\nBiểu diễn vector trọng số $w$ dưới dạng tổ hợp tuyến tính của các mẫu huấn luyện:",
+    "options": [
+      [
+        "A",
+        "$w = \\sum_{i=1}^m \\alpha_i y_i \\phi(x_i)$, trong đó $\\alpha_i$ là số lần mẫu $(x_i, y_i)$ bị dự đoán sai và kích hoạt cập nhật."
+      ],
+      [
+        "B",
+        "$w = \\sum_{i=1}^m \\alpha_i \\phi(x_i)$ với $\\alpha_i = 1/m$ là hằng số."
+      ],
+      [
+        "C",
+        "$w = \\prod_{i=1}^m y_i K(x_i, x)$."
+      ],
+      [
+        "D",
+        "$w = \\max_{i} \\alpha_i y_i \\phi(x_i)$."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "**Đáp án chính xác: A (Theo đáp án chính thức IOAI 2024)**\n\nBan đầu $\\alpha_i = 0, \\forall i$. Mỗi khi mẫu thứ $i$ bị phân loại sai, ta cộng $y_i \\phi(x_i)$ vào $w$, tương đương với việc tăng $\\alpha_i \\leftarrow \\alpha_i + 1$.\nNhờ đó, hàm quyết định trên mẫu mới $x$ hoàn toàn có thể tính thông qua hàm nhân (Kernel Trick):\n$$f(x) = \\text{sgn}(\\langle w, \\phi(x) \\rangle) = \\text{sgn}\\left( \\sum_{i=1}^m \\alpha_i y_i K(x_i, x) \\right)$$\nmà không cần tính tường minh vector trong không gian đặc trưng vô hạn chiều.",
+    "tags": "ioai-2024,perceptron,kernel-trick,novikoff"
+  },
+  {
+    "slug": "ioai-2024-q6-bellman-grid-world-mdp",
+    "competition": "IOAI",
+    "year": 2024,
+    "stage": "Vòng thi Lý thuyết Chính thức",
+    "topic": "Học tăng cường",
+    "difficulty": "Chung kết Quốc tế",
+    "question": "Xét tác tử di chuyển trong lưới $3 \\times 3$. Tại trạng thái $s_1$, tác tử chọn hành động 'đi sang phải' (attempt right) để nhận phần thưởng tức thì $R(s_1, \\text{right}) = 1$. Do xác suất chuyển động ngẫu nhiên:\n- Với xác suất 0.7, tác tử đi sang phải (đến $s_2$)\n- Với xác suất 0.1, tác tử tự đi sang phải (đến $s_2$)\n- Với xác suất 0.1, tác tử trượt sang trái (vấp biên nên ở lại $s_1$)\n- Với xác suất 0.1, tác tử trượt xuống dưới (đến $s_4$)\nHệ số chiết khấu $\\gamma = 0.9$. Phương trình Bellman cho giá trị trạng thái $V(s_1)$ dưới chính sách cố định $\\pi$ là:",
+    "options": [
+      [
+        "A",
+        "$$V(s_1) = 1 + 0.9 [0.8 V(s_2) + 0.1 V(s_1) + 0.1 V(s_4)]$$"
+      ],
+      [
+        "B",
+        "$$V(s_1) = 1 + 0.9 [0.7 V(s_2) + 0.1 V(s_1)]$$"
+      ],
+      [
+        "C",
+        "$$V(s_1) = 1 + 0.8 V(s_2)$$"
+      ],
+      [
+        "D",
+        "$$V(s_1) = 0.9 [V(s_2) + V(s_4)]$$"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "**Đáp án chính xác: A (Theo đáp án chính thức IOAI 2024)**\n\nTổng xác suất tác tử chuyển sang $s_2$ khi cố gắng đi sang phải là $P(s_2 | s_1, \\text{right}) = 0.7 + 0.1 = 0.8$.\nXác suất ở lại $s_1$ là $0.1$.\nXác suất rơi xuống $s_4$ là $0.1$.\nTheo phương trình Bellman:\n$$V(s_1) = R(s_1, \\text{right}) + \\gamma \\sum_{s'} P(s' | s_1, \\text{right}) V(s') = 1 + 0.9 [0.8 V(s_2) + 0.1 V(s_1) + 0.1 V(s_4)]$$",
+    "tags": "ioai-2024,reinforcement-learning,bellman-equation,grid-world"
+  }
+]

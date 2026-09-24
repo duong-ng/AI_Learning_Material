@@ -1,0 +1,36 @@
+---
+id: "ioai-2024-practical-generative-multimedia"
+competition: "IOAI"
+year: 2024
+stage: "Practical Round - On-Site"
+title: "Generative AI: Album Cover Art & Song Remix Video Production"
+domain: "Generative AI"
+difficulty: "Olympiad Final"
+evaluation_metric: "Other"
+tags:
+  - "generative-ai"
+  - "diffusion"
+  - "video-generation"
+  - "practical-round"
+  - "ioai-2024"
+dataset_links:
+  - "https://ioai-official.org/wp-content/uploads/2025/06/Practical-Round-problems.zip"
+solution_notebook_url: "https://ioai-official.org/wp-content/uploads/2025/06/Practical-round-best-solutions.zip"
+source_url: "https://ioai-official.org/wp-content/uploads/2025/06/Practical-Round-problems.zip"
+crawled_at: "2026-09-18T14:50:07.096621"
+version: 1
+---
+## Problem Statement: Practical Round (Generative AI)
+
+Participants are tasked with using state-of-the-art Generative AI models (text-to-image and image-to-video diffusion pipelines) to create a coherent visual album cover and produce a short, high-fidelity music video segment for a given song remix.
+
+### Evaluation Criteria
+- Prompt adherence and semantic fidelity to the musical theme
+- Visual consistency, temporal smoothness, and composition aesthetics
+- Effective technical parameter tuning (guidance scale, sampling steps, motion vectors)
+
+---
+
+## Editorial & Solutions
+
+Detailed winning approach utilizing prompt chaining, ControlNet spatial guidance, and frame interpolation.

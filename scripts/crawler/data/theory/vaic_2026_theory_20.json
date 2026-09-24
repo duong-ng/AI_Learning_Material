@@ -1,0 +1,602 @@
+[
+  {
+    "slug": "vaic-2026-q1-object-detection-map",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Thị giác máy tính (CV)",
+    "difficulty": "Cơ bản",
+    "question": "Những độ đo nào sau đây được sử dụng phổ biến nhất để đánh giá chất lượng của mô hình phát hiện vật thể (object detection)?",
+    "options": [
+      [
+        "A",
+        "Mean Average Precision (mAP)"
+      ],
+      [
+        "B",
+        "Peak Signal-to-Noise Ratio (PSNR)"
+      ],
+      [
+        "C",
+        "Structural Similarity Index (SSIM)"
+      ],
+      [
+        "D",
+        "Mean Squared Error (MSE)"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Trong bài toán phát hiện vật thể (Object Detection), mô hình cần dự đoán đồng thời vị trí (bounding box) và nhãn lớp. Độ đo chuẩn mực quốc tế là mAP (Mean Average Precision), tính diện tích dưới đường cong Precision-Recall tại các ngưỡng IoU khác nhau (như mAP@0.5, mAP@0.5:0.95). PSNR và SSIM dùng cho khôi phục ảnh.",
+    "tags": "computer-vision,object-detection,map,metrics"
+  },
+  {
+    "slug": "vaic-2026-q2-transformer-softmax-scaling",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Transformers & Attention",
+    "difficulty": "Nâng cao",
+    "question": "Trong kiến trúc Transformer, nếu sử dụng $\\text{softmax}(QK^T)$ thay vì $\\text{softmax}\\left(\\frac{QK^T}{\\sqrt{d}}\\right)$, những hiện tượng bất lợi nào có thể xuất hiện khi số chiều $d$ lớn?",
+    "options": [
+      [
+        "A",
+        "Hàm softmax trở nên quá sắc nhọn (sharp), gradient dễ suy giảm và cơ chế chú ý dễ bão hòa vào một số ít token."
+      ],
+      [
+        "B",
+        "Số lượng tham số của mô hình tăng lên theo hàm mũ."
+      ],
+      [
+        "C",
+        "Thời gian tính toán của cơ chế chú ý chuyển từ $O(N^2)$ sang $O(N^3)$."
+      ],
+      [
+        "D",
+        "Ma trận Attention bị mất tính trực giao và không khả nghịch."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Khi $d$ lớn, tích vô hướng $q^T k$ có phương sai tỷ lệ thuận với $d$. Giá trị độ lớn của các logits $QK^T$ rất cao khiến hàm softmax phân phối xác suất cực đoan (gần 1 cho token lớn nhất và xấp xỉ 0 cho các token khác). Điều này làm đạo hàm của softmax tiệm cận 0 (vanishing gradient) và cơ chế attention mất khả năng học ngữ cảnh đa dạng.",
+    "tags": "transformers,attention,softmax,vanishing-gradient"
+  },
+  {
+    "slug": "vaic-2026-q3-collaborative-filtering-weighted-avg",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Trung bình",
+    "question": "Một hệ thống gợi ý phim đang dự đoán mức độ yêu thích của người dùng $U_1$ đối với bộ phim $M$. Từ lịch sử tương tác:\n- $\\text{sim}(U_1, U_2) = 0.9$ với rating $r(U_2, M) = 5$\n- $\\text{sim}(U_1, U_3) = 0.6$ với rating $r(U_3, M) = 4$\n- $\\text{sim}(U_1, U_4) = 0.3$ với rating $r(U_4, M) = 2$\n\nTính đánh giá dự đoán $\\hat{r} = \\frac{\\sum \\text{sim}(U_1, U_i) r(U_i, M)}{\\sum \\text{sim}(U_1, U_i)}$ cho người dùng $U_1$.",
+    "options": [
+      [
+        "A",
+        "4.17"
+      ],
+      [
+        "B",
+        "3.67"
+      ],
+      [
+        "C",
+        "4.50"
+      ],
+      [
+        "D",
+        "3.85"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Tử số: $0.9 \\times 5 + 0.6 \\times 4 + 0.3 \\times 2 = 4.5 + 2.4 + 0.6 = 7.5$. Mẫu số: $0.9 + 0.6 + 0.3 = 1.8$. Giá trị dự đoán: $\\hat{r} = 7.5 / 1.8 \\approx 4.1667 \\approx 4.17$.",
+    "tags": "recommender-systems,collaborative-filtering,weighted-average"
+  },
+  {
+    "slug": "vaic-2026-q4-id3-information-gain-bias",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Trung bình",
+    "question": "Những hạn chế nào liên quan trực tiếp nhất đến việc sử dụng Information Gain trong thuật toán cây quyết định ID3?",
+    "options": [
+      [
+        "A",
+        "Có xu hướng thiên vị (ưu tiên) các thuộc tính có nhiều giá trị khác nhau (high cardinality)."
+      ],
+      [
+        "B",
+        "Không thể dùng cho bất kỳ bài toán phân loại nào."
+      ],
+      [
+        "C",
+        "Luôn tạo ra một cây nhị phân cân bằng hoàn hảo."
+      ],
+      [
+        "D",
+        "Cần dùng Gradient Descent để cập nhật các ngưỡng của cây."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Information Gain thuần túy có xu hướng thiên vị các thuộc tính có cardinality cao (ví dụ: số CMND/CCCD, ngày sinh). Nếu chia theo thuộc tính có mỗi giá trị chỉ chứa 1 mẫu, entropy tại các nút con sẽ bằng 0 và Information Gain đạt cực đại nhưng mô hình hoàn toàn vô dụng trên dữ liệu mới. Thuật toán C4.5 giải quyết nhược điểm này bằng Gain Ratio.",
+    "tags": "decision-tree,id3,information-gain"
+  },
+  {
+    "slug": "vaic-2026-q5-training-dynamics-early-stopping",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Mạng nơ-ron & Học sâu",
+    "difficulty": "Trung bình",
+    "question": "Một mô hình học sâu ghi nhận bảng kết quả huấn luyện:\n\n| Epoch | Train Acc (%) | Val Acc (%) | Val Loss |\n| :--- | :--- | :--- | :--- |\n| 10 | 82.1 | 80.5 | 0.63 |\n| 20 | 90.4 | 87.8 | 0.42 |\n| 30 | 97.5 | 84.1 | 0.70 |\n\nNhận định nào sau đây là chuẩn xác nhất?",
+    "options": [
+      [
+        "A",
+        "Mô hình bắt đầu bị quá khớp (overfitting) sau epoch 20; Early stopping ở khoảng epoch 20 là quyết định tối ưu."
+      ],
+      [
+        "B",
+        "Epoch 30 là checkpoint tốt nhất vì có độ chính xác Train Acc cao nhất (97.5%)."
+      ],
+      [
+        "C",
+        "Mô hình đang bị dưới khớp (underfitting) và cần tăng tốc độ học lên 10 lần."
+      ],
+      [
+        "D",
+        "Cần tiếp tục huấn luyện đến epoch 100 vì Val Loss sẽ tự động giảm dần."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Tại epoch 20, Val Loss đạt cực tiểu (0.42) và Val Acc đạt đỉnh (87.8%). Đến epoch 30, Train Acc tiếp tục tăng mạnh lên 97.5% nhưng Val Loss đảo chiều tăng vọt lên 0.70 và Val Acc giảm xuống 84.1%. Đây là dấu hiệu kinh điển của Overfitting, cần dừng sớm (Early Stopping) tại epoch 20.",
+    "tags": "deep-learning,overfitting,early-stopping"
+  },
+  {
+    "slug": "vaic-2026-q6-small-object-detection-improvements",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Thị giác máy tính (CV)",
+    "difficulty": "Nâng cao",
+    "question": "Một bộ phát hiện vật thể (object detector) đạt hiệu năng: $AP_{\\text{small}} = 0.30, AP_{\\text{medium}} = 0.69, AP_{\\text{large}} = 0.84$. Nhóm giải pháp nào có khả năng cải thiện trực tiếp và hiệu quả nhất cho $AP_{\\text{small}}$?",
+    "options": [
+      [
+        "A",
+        "Tăng độ phân giải ảnh đầu vào, bổ sung mạng đặc trưng đa tỉ lệ (Feature Pyramid Network - FPN) và thu thập thêm ảnh có vật thể nhỏ."
+      ],
+      [
+        "B",
+        "Thay bộ tối ưu hóa thành SGD và chuyển hàm mất mát sang MSE."
+      ],
+      [
+        "C",
+        "Giảm kích thước ảnh đầu vào để mô hình xử lý nhanh hơn."
+      ],
+      [
+        "D",
+        "Bỏ lớp Non-Maximum Suppression (NMS) trong pha hậu xử lý."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Vật thể nhỏ bị mất tín hiệu không gian ở các lớp tích chập sâu do phép pooling/striding liên tục. Để cải thiện: (1) Tăng độ phân giải ảnh để vật thể nhỏ chiếm nhiều pixel hơn; (2) Sử dụng FPN/BiFPN kết hợp đặc trưng nông (độ phân giải cao) với đặc trưng sâu (ngữ nghĩa mạnh); (3) Tăng cường dữ liệu bằng Mosaic/Copy-Paste vật thể nhỏ.",
+    "tags": "computer-vision,fpn,small-objects,detection"
+  },
+  {
+    "slug": "vaic-2026-q7-word2vec-vector-arithmetic",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Xử lý ngôn ngữ tự nhiên (NLP)",
+    "difficulty": "Cơ bản",
+    "question": "Nếu mô hình Word2Vec học tốt mối quan hệ ngữ nghĩa tương đồng (semantic analogy), phép toán vector nào sau đây cho kết quả xấp xỉ hợp lý nhất?",
+    "options": [
+      [
+        "A",
+        "$v(\\text{King}) - v(\\text{Man}) + v(\\text{Woman}) \\approx v(\\text{Queen})$"
+      ],
+      [
+        "B",
+        "$v(\\text{King}) + v(\\text{Queen}) \\approx v(\\text{Woman})$"
+      ],
+      [
+        "C",
+        "$v(\\text{Man}) - v(\\text{Woman}) \\approx v(\\text{King})$"
+      ],
+      [
+        "D",
+        "$v(\\text{Queen}) - v(\\text{King}) \\approx v(\\text{Man})$"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Khám phá nổi tiếng của Mikolov et al. (2013) trong không gian vector Word2Vec: Phép trừ $v(\\text{King}) - v(\\text{Man})$ mã hóa vector quan hệ giới tính 'nam giới'. Khi cộng thêm $v(\\text{Woman})$, vector chuyển sang tương đương với $v(\\text{Queen})$.",
+    "tags": "nlp,word2vec,vector-arithmetic,analogy"
+  },
+  {
+    "slug": "vaic-2026-q8-sobel-separable-filter",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Thị giác máy tính (CV)",
+    "difficulty": "Nâng cao",
+    "question": "Bộ lọc Sobel theo phương đứng có thể tách (separable filter) thành tích ngoài của hai vector:\n$$\\begin{bmatrix} 1 & 2 & 1 \\\\ 0 & 0 & 0 \\\\ -1 & -2 & -1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 0 \\\\ -1 \\end{bmatrix} \\begin{bmatrix} 1 & 2 & 1 \\end{bmatrix}$$\nPhát biểu nào sau đây là ĐÚNG về lợi ích của phép tách này?",
+    "options": [
+      [
+        "A",
+        "Giúp giảm độ phức tạp tính toán từ $K^2$ phép nhân-cộng xuống $2K$ phép nhân-cộng trên mỗi pixel, đồng thời tương đương việc làm mịn Gaussian 1D rồi lấy đạo hàm bậc nhất."
+      ],
+      [
+        "B",
+        "Tạo ra hiện tượng viền giả (spurious edge artifacts) trên biên ảnh."
+      ],
+      [
+        "C",
+        "Làm tăng số lượng tham số cần lưu trữ gấp đôi."
+      ],
+      [
+        "D",
+        "Chỉ áp dụng được khi kích thước ảnh là hình vuông chẵn."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Tích chập 2D với kernel $K \\times K$ tốn $K^2$ phép tính trên pixel. Với kernel khả tách hạng 1 (separable filter), ta thực hiện tích chập 1D ngang (kernel $[1, 2, 1]$ làm mịn Gauss) rồi tích chập 1D dọc (kernel $[1, 0, -1]^T$ lấy vi sai bậc nhất), giảm chi phí từ $9$ xuống $3+3=6$ phép tính (tiết kiệm ~33% tính toán).",
+    "tags": "computer-vision,sobel,convolution,separable-filter"
+  },
+  {
+    "slug": "vaic-2026-q9-confusion-matrix-class-error",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Trung bình",
+    "question": "Cho ma trận nhầm lẫn (confusion matrix) của bài toán phân loại 3 lớp (hàng là nhãn thực tế, cột là nhãn dự đoán):\n\n| | Dự đoán A | Dự đoán B | Dự đoán C |\n| :--- | :--- | :--- | :--- |\n| **Thực tế A** | 90 | 8 | 2 |\n| **Thực tế B** | 15 | 70 | 15 |\n| **Thực tế C** | 3 | 12 | 85 |\n\nNếu chỉ được thu thập thêm dữ liệu huấn luyện cho MỘT lớp nhằm cải thiện hiệu năng tổng thể, lớp nào là ưu tiên số một?",
+    "options": [
+      [
+        "A",
+        "Lớp B vì có tỷ lệ phân loại đúng thấp nhất (70/100 = 70%) và tỷ lệ nhầm lẫn sang các lớp khác cao nhất (30%)."
+      ],
+      [
+        "B",
+        "Lớp A vì có số lượng mẫu dự đoán đúng lớn nhất (90 mẫu)."
+      ],
+      [
+        "C",
+        "Lớp C vì nhầm nhiều sang lớp B."
+      ],
+      [
+        "D",
+        "Không thể xác định được từ ma trận nhầm lẫn."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Xét Recall của từng lớp: Lớp A đạt $90/100 = 90\\%$, Lớp C đạt $85/100 = 85\\%$, Lớp B chỉ đạt $70/100 = 70\\%$ (bị nhầm 15 sang A và 15 sang C). Nút thắt cổ chai lớn nhất là lớp B, do đó bổ sung dữ liệu cho lớp B sẽ đem lại cải thiện lớn nhất cho macro-accuracy.",
+    "tags": "machine-learning,confusion-matrix,diagnostics"
+  },
+  {
+    "slug": "vaic-2026-q10-precision-positive-class",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Cơ bản",
+    "question": "Cho ma trận nhầm lẫn (hàng là nhãn thực tế, cột là nhãn dự đoán):\n\n| | Dự đoán P | Dự đoán N |\n| :--- | :--- | :--- |\n| **Thực tế P** | 90 | 10 |\n| **Thực tế N** | 20 | 80 |\n\nGiá trị Precision của lớp dương tính $P$ bằng bao nhiêu (làm tròn 3 chữ số thập phân)?",
+    "options": [
+      [
+        "A",
+        "0.818"
+      ],
+      [
+        "B",
+        "0.900"
+      ],
+      [
+        "C",
+        "0.850"
+      ],
+      [
+        "D",
+        "0.800"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "$\\text{TP} = 90$, $\\text{FP} = 20$. Công thức $\\text{Precision} = \\frac{\\text{TP}}{\\text{TP} + \\text{FP}} = \\frac{90}{90 + 20} = \\frac{90}{110} \\approx 0.81818 \\approx 0.818$.",
+    "tags": "machine-learning,precision,metrics"
+  },
+  {
+    "slug": "vaic-2026-q11-binary-dataset-entropy",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Toán học & Ma trận",
+    "difficulty": "Cơ bản",
+    "question": "Trong một bộ dữ liệu phân loại nhị phân, có 8 mẫu dương tính và 8 mẫu âm tính. Giá trị Entropy Shannon (dùng $\\log_2$) của bộ dữ liệu này bằng bao nhiêu?",
+    "options": [
+      [
+        "A",
+        "1.0"
+      ],
+      [
+        "B",
+        "0.5"
+      ],
+      [
+        "C",
+        "0.0"
+      ],
+      [
+        "D",
+        "2.0"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Xác suất mỗi lớp: $p_1 = 8/16 = 0.5, p_2 = 8/16 = 0.5$. $H = -p_1 \\log_2(p_1) - p_2 \\log_2(p_2) = -0.5(-1) - 0.5(-1) = 0.5 + 0.5 = 1.0$. Khi hai lớp cân bằng hoàn hảo, độ bất định đạt cực đại là 1 bit.",
+    "tags": "information-theory,entropy,shannon"
+  },
+  {
+    "slug": "vaic-2026-q12-vietnamese-nlp-phobert",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Xử lý ngôn ngữ tự nhiên (NLP)",
+    "difficulty": "Cơ bản",
+    "question": "Trong bài toán phân loại cảm xúc văn bản tiếng Việt (Positive/Negative sentiment), phương pháp/mô hình nào thường mang lại kết quả vượt trội và tối ưu nhất?",
+    "options": [
+      [
+        "A",
+        "PhoBERT Fine-tuning"
+      ],
+      [
+        "B",
+        "TF-IDF kết hợp Logistic Regression"
+      ],
+      [
+        "C",
+        "Word2Vec kết hợp SVM"
+      ],
+      [
+        "D",
+        "Bag of Words kết hợp Naive Bayes"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "PhoBERT (Nguyen & Nguyen, 2020) là mô hình RoBERTa tiền huấn luyện chuyên biệt trên tập dữ liệu tiếng Việt 20GB với cơ chế tách từ âm tiết và từ ghép tiếng Việt, nắm bắt ngữ cảnh hai chiều sâu sắc hơn rất nhiều so với các phương pháp nông (TF-IDF, BoW, Word2Vec tĩnh).",
+    "tags": "nlp,vietnamese,phobert,transformers"
+  },
+  {
+    "slug": "vaic-2026-q13-vit-patch-size-complexity",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Thị giác máy tính (CV)",
+    "difficulty": "Nâng cao",
+    "question": "Mô hình Vision Transformer (ViT) nhận ảnh kích thước $224 \\times 224$ với patch size $16 \\times 16$. Nếu patch size tăng lên $32 \\times 32$, độ phức tạp tính toán của cơ chế tự chú ý (self-attention) thay đổi như thế nào?",
+    "options": [
+      [
+        "A",
+        "Giảm xấp xỉ 16 lần"
+      ],
+      [
+        "B",
+        "Giảm xấp xỉ 4 lần"
+      ],
+      [
+        "C",
+        "Tăng xấp xỉ 4 lần"
+      ],
+      [
+        "D",
+        "Tăng xấp xỉ 16 lần"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Số lượng tokens (patches) với kích thước $16 \\times 16$ là $N_1 = (224/16)^2 = 14^2 = 196$. Khi tăng patch size lên $32 \\times 32$, số tokens là $N_2 = (224/32)^2 = 7^2 = 49$. Vì độ phức tạp self-attention là $O(N^2)$, tỷ lệ giảm là $(N_1 / N_2)^2 = (196 / 49)^2 = 4^2 = 16$ lần.",
+    "tags": "computer-vision,vit,patch-size,complexity"
+  },
+  {
+    "slug": "vaic-2026-q14-decision-tree-depth-overfitting",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Trung bình",
+    "question": "Vì sao một Cây quyết định (Decision tree) có độ sâu rất lớn thường hoạt động kém trên dữ liệu kiểm tra, mặc dù đạt độ chính xác gần như 100% trên dữ liệu huấn luyện?",
+    "options": [
+      [
+        "A",
+        "Vì cây học quá mức các dao động nhiễu và mẫu ngoại lai (overfitting) dẫn đến phương sai (variance) cao."
+      ],
+      [
+        "B",
+        "Vì cây càng sâu thì độ thiên lệch (bias) càng tăng cao."
+      ],
+      [
+        "C",
+        "Vì Cây quyết định hoàn toàn không thể phân chia ranh giới phi tuyến."
+      ],
+      [
+        "D",
+        "Vì hàm entropy không còn xác định khi cây có nhiều nhánh."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Cây quyết định không giới hạn độ sâu sẽ tiếp tục phân nhánh cho đến khi mỗi nút lá chỉ chứa 1 điểm dữ liệu. Điều này dẫn đến độ chệch (bias) bằng 0 nhưng phương sai (variance) cực lớn, khiến cây ghi nhớ cả các nhiễu ngẫu nhiên trong tập train và mất khả năng tổng quát hóa.",
+    "tags": "decision-tree,overfitting,bias-variance"
+  },
+  {
+    "slug": "vaic-2026-q15-precision-recall-at-k",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Trung bình",
+    "question": "Một hệ thống đề xuất gợi ý danh sách Top-5 sản phẩm: $[A, B, C, D, E]$.\nNgười dùng thực tế quan tâm đến tập hợp 5 sản phẩm: $[B, C, F, G, Z]$.\nTính giá trị Precision@5 và Recall@5 của hệ thống.",
+    "options": [
+      [
+        "A",
+        "Precision@5 = 0.40; Recall@5 = 0.40"
+      ],
+      [
+        "B",
+        "Precision@5 = 0.60; Recall@5 = 0.40"
+      ],
+      [
+        "C",
+        "Precision@5 = 0.40; Recall@5 = 0.60"
+      ],
+      [
+        "D",
+        "Precision@5 = 0.50; Recall@5 = 0.50"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Các sản phẩm đúng trong Top-5 là giao của $[A, B, C, D, E]$ và $[B, C, F, G, Z]$, gồm: $\\{B, C\\}$ (2 sản phẩm). Precision@5 = 2/5 = 0.40. Tổng sản phẩm người dùng quan tâm là 5 $\\implies$ Recall@5 = 2/5 = 0.40.",
+    "tags": "recommender-systems,precision-at-k,recall-at-k"
+  },
+  {
+    "slug": "vaic-2026-q16-pure-node-zero-entropy",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Cơ bản",
+    "question": "Nếu một nút trong Cây quyết định (Decision tree) có giá trị Entropy bằng 0, điều này đồng nghĩa với khẳng định nào?",
+    "options": [
+      [
+        "A",
+        "Tất cả các mẫu trong nút đó đều thuộc cùng một lớp (nút hoàn toàn thuần khiết)."
+      ],
+      [
+        "B",
+        "Các mẫu trong nút đó được chia đều cho tất cả các lớp."
+      ],
+      [
+        "C",
+        "Nút đó chắc chắn là nút gốc (root node)."
+      ],
+      [
+        "D",
+        "Cây quyết định đã bị lỗi tính toán tràn số."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Entropy $H = -\\sum p_i \\log_2(p_i) = 0$ khi và chỉ khi tồn tại một lớp có xác suất $p_k = 1$ và các lớp khác có xác suất bằng 0. Nút này là nút thuần khiết (pure node) và thuật toán sẽ dừng phân nhánh tại đây.",
+    "tags": "decision-tree,entropy,purity"
+  },
+  {
+    "slug": "vaic-2026-q17-cold-start-content-based",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Trung bình",
+    "question": "Một nền tảng xem phim vừa thêm bộ phim mới vào hệ thống (hoàn toàn chưa có lượt đánh giá/rating nào nhưng có đầy đủ thể loại, diễn viên và mô tả văn bản). Phương pháp gợi ý nào có thể giải quyết hiệu quả vấn đề khởi động lạnh (cold-start) này?",
+    "options": [
+      [
+        "A",
+        "Lọc dựa trên nội dung (Content-based Filtering)"
+      ],
+      [
+        "B",
+        "Lọc cộng tác dựa trên người dùng (User-based Collaborative Filtering)"
+      ],
+      [
+        "C",
+        "Lọc cộng tác dựa trên sản phẩm (Item-based Collaborative Filtering)"
+      ],
+      [
+        "D",
+        "Phân rã ma trận (Matrix Factorization - SVD)"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Vấn đề khởi động lạnh cho vật phẩm mới (Item Cold-Start) khiến các phương pháp Collaborative Filtering (User-based, Item-based, Matrix Factorization) thất bại vì dựa vào ma trận tương tác người dùng - vật phẩm. Content-based Filtering phân tích các thuộc tính mô tả nội dung (thể loại, diễn viên, text embedding) để so khớp với hồ sơ sở thích của người dùng.",
+    "tags": "recommender-systems,cold-start,content-based"
+  },
+  {
+    "slug": "vaic-2026-q18-knn-small-k-bias-variance",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Trung bình",
+    "question": "Trong thuật toán k-NN, hiện tượng nào có khả năng xảy ra cao nhất khi chọn giá trị $K$ rất nhỏ (chẳng hạn $K = 1$)?",
+    "options": [
+      [
+        "A",
+        "Mô hình có độ thiên lệch thấp (low bias) nhưng phương sai cao (high variance), rất nhạy cảm với nhiễu."
+      ],
+      [
+        "B",
+        "Mô hình có độ thiên lệch cao (high bias) nhưng phương sai thấp (low variance)."
+      ],
+      [
+        "C",
+        "Ranh giới quyết định trở nên phẳng và mượt hơn."
+      ],
+      [
+        "D",
+        "Mô hình trở thành hồi quy tuyến tính."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Khi $K = 1$, nhãn dự đoán phụ thuộc hoàn toàn vào 1 điểm gần nhất duy nhất. Mô hình đạt 100% độ chính xác trên tập train (low bias) nhưng ranh giới phân chia cực kỳ phức tạp và nhấp nhô, bất kỳ điểm nhiễu ngoại lai nào cũng tạo ra một 'hòn đảo' quyết định xung quanh nó (high variance).",
+    "tags": "machine-learning,knn,bias-variance"
+  },
+  {
+    "slug": "vaic-2026-q19-vit-vs-cnn-inductive-bias",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Thị giác máy tính (CV)",
+    "difficulty": "Nâng cao",
+    "question": "Khi huấn luyện từ đầu (from scratch) trên một tập dữ liệu tương đối nhỏ, nhận định nào sau đây là ĐÚNG khi so sánh Vision Transformer (ViT) với CNN có quy mô tương đương?",
+    "options": [
+      [
+        "A",
+        "ViT có thiên kiến quy nạp (inductive bias) yếu hơn CNN nên cần nhiều dữ liệu hơn để học tính bất biến tịnh tiến và tính cục bộ; CNN hoạt động tốt hơn khi dữ liệu hạn chế."
+      ],
+      [
+        "B",
+        "ViT luôn đạt độ chính xác cao hơn CNN trên mọi kích thước tập dữ liệu."
+      ],
+      [
+        "C",
+        "ViT có inductive bias mạnh hơn CNN vì cơ chế self-attention tự động tạo bộ lọc không gian."
+      ],
+      [
+        "D",
+        "CNN cần nhiều dữ liệu hơn ViT vì số lượng trọng số lớn hơn."
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "CNN có sẵn inductive bias rất mạnh: tính cục bộ (locality - các pixel gần nhau có quan hệ mật thiết) và tính bất biến tịnh tiến (translation equivariance - dùng chung trọng số kernel). ViT không có các giả định này mà phải tự học từ đầu qua attention toàn cục, do đó khi dữ liệu nhỏ ViT dễ bị overfitting nghiêm trọng nếu không có pretraining trên tập lớn (JFT-300M/ImageNet-21k).",
+    "tags": "computer-vision,vit,cnn,inductive-bias"
+  },
+  {
+    "slug": "vaic-2026-q20-multiclass-micro-averaging-equality",
+    "competition": "VAIC 2026",
+    "year": 2026,
+    "stage": "Vòng Khu vực",
+    "topic": "Học máy Cổ điển",
+    "difficulty": "Nâng cao",
+    "question": "Trong bài toán phân loại đa lớp (multiclass single-label classification), khi mỗi mẫu chỉ thuộc đúng một lớp, nếu áp dụng phương pháp trung bình vi mô (micro-averaging), mối quan hệ nào sau đây là ĐÚNG?",
+    "options": [
+      [
+        "A",
+        "$\\text{Micro-F1} = \\text{Micro-Accuracy} = \\text{Micro-Recall} = \\text{Micro-Precision}$"
+      ],
+      [
+        "B",
+        "$\\text{Micro-Accuracy} \\ge \\text{Micro-F1} \\ge \\text{Micro-Recall} \\ge \\text{Micro-Precision}$"
+      ],
+      [
+        "C",
+        "$\\text{Micro-F1} = \\text{Micro-Accuracy}$, nhưng $\\text{Micro-Recall} \\ne \\text{Micro-Precision}$"
+      ],
+      [
+        "D",
+        "$\\text{Micro-F1} \\ne \\text{Micro-Accuracy}$ trong mọi trường hợp"
+      ]
+    ],
+    "correctAnswer": "A",
+    "explanation": "Trong phân loại đơn nhãn (single-label), mọi dự đoán sai của lớp này đều đồng thời tạo ra một False Positive cho lớp dự đoán và một False Negative cho lớp thực tế. Do đó $\\sum \\text{FP} = \\sum \\text{FN}$. Suy ra $\\text{Micro-Precision} = \\frac{\\sum \\text{TP}}{\\sum \\text{TP} + \\sum \\text{FP}} = \\frac{\\sum \\text{TP}}{N} = \\text{Accuracy}$. Tương tự cho Recall. Vì Precision = Recall nên $F_1 = \\text{Precision} = \\text{Recall} = \\text{Accuracy}$.",
+    "tags": "machine-learning,micro-averaging,metrics,proof"
+  }
+]
